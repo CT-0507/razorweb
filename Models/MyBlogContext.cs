@@ -11,6 +11,7 @@ namespace ex.models
         }
         public DbSet<Article> articles { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

@@ -61,3 +61,10 @@ namespace ex
         }
     }
 }
+
+/*
+    CREATE, READ, UPDATE, DELETE (CRUD)
+    dotnet aspnet-codegenerator razorpage -m razorweb.models.Article -dc razorweb.models.MyBlogContext -outDir Pages/Blog -udl --referenceScriptLibraries
+
+    dotnet aspnet-codegenerator razorpage -m ex.models.Article -dc ex.models.MyBlogContext -outDir Pages/Blog -udl --referenceScriptLibraries
+*/
