@@ -98,7 +98,7 @@ namespace ex.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Xác nhận địa chỉ email",
-                        $"Bạn đã đăng ký tài khoản trên testweb, hãy <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>nhấn vào đây để xác nhận here</a>.");
+                        $"Bạn đã đăng ký tài khoản trên testweb, hãy <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>nhấn vào đây để xác nhận</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
