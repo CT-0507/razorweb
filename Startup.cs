@@ -80,6 +80,19 @@ namespace ex
                 options.LogoutPath = "/logout/";
                 options.AccessDeniedPath = "/access-denied.html";
             });
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    var gconfig = Configuration.GetSection("Authentication:Google");
+                    options.ClientId = gconfig["ClientId"];
+                    options.ClientSecret = gconfig["ClientSecret"];
+                    // Default CallBackPath = https://localhost:5001/signin-google
+                    options.CallbackPath = "/dang-nhap-tu-google";
+                })
+                // .AddFacebook()
+                // .AddTwitter()
+                // .AddMicrosoftAccount()
+                ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -133,5 +146,7 @@ namespace ex
     Phat sinh code thay vi mat dinh cho dang nhap
 
     dotnet aspnet-codegenerator identity -dc ex.models.MyBlogContext
+    CallbackPath
+    https://localhost:5001/dang-nhap-tu-google
 
 */
