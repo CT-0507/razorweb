@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Services;
 using ex.models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -93,6 +94,10 @@ namespace ex
                 // .AddTwitter()
                 // .AddMicrosoftAccount()
                 ;
+            services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
+            // services.Configure<SecurityStampValidatorOptions>(options => {
+            //     options.ValidationInterval = TimeSpan.FromSeconds(30);
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -138,12 +143,26 @@ namespace ex
     Identity
         - Authentication: Xac dinh danh tinh -> Login, Logout ...
         - Authorization: Xac thuc quyen truy cap
+            Role-base authorization - xac thuc quyen theo vai tro
+            -Role (vai tro): (Admin, Editor, Manager, Member, ...)
+            
+            Index
+            Create
+            Edit
+            Delete
+
+            dotnet new page -n Index -o Areas/Admin/Pages/Role -p:n App.Admin.Role
+
+            dotnet new page -n Create -o Areas/Admin/Pages/Role -p:n App.Admin.Role
+
+            [Authorize] - Controller, Action, PageModel -> Dang nhap
+
         - Quan ly User
 
     /Identity/Account/Login
     /Identity/Account/Manage
 
-    Phat sinh code thay vi mat dinh cho dang nhap
+    Phat sinh code thay vi mac dinh cho dang nhap
 
     dotnet aspnet-codegenerator identity -dc ex.models.MyBlogContext
     CallbackPath
