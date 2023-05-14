@@ -80,8 +80,6 @@ namespace App.Admin.User
                 }
                 return Page();
             }
-
-            await _signInManager.RefreshSignInAsync(user);
             StatusMessage = $"Vừa cập nhật mật khẩu cho user: {user.UserName}.";
 
             return RedirectToPage("./Index");

@@ -98,6 +98,23 @@ namespace ex
             // services.Configure<SecurityStampValidatorOptions>(options => {
             //     options.ValidationInterval = TimeSpan.FromSeconds(30);
             // });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AllowEditRole", policyBuilder =>
+                {
+                    // Dieu kien Policy
+                    policyBuilder.RequireAuthenticatedUser();
+
+                    policyBuilder.RequireClaim("canedit", "user");
+                    // policyBuilder.RequireRole("Admin");
+                    // policyBuilder.RequireRole("Editor");
+                    // policyBuilder.RequireClaim("TEn claim", "gia tri 1", "gia tri 2");
+                    // policyBuilder.RequireClaim();
+
+                    // IdentityRoleClaim<string> claim1;
+                    // IdentityUserClaim<string> claim2;
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -151,9 +168,21 @@ namespace ex
             Edit
             Delete
 
+            * Policy-based authorization
+            * Claims-based authorization
+                Claims -> Dac tinh tinh chat cua 1 doi tuong
+
+                Ví dụ Bằng lái E2 (Role) -> Được lái xe 4 chỗ
+                - Ngày sinh -> claim
+                - Nơi sinh -> claim
+
+                Mua rượu (> 18 tuổi)
+                    - Kiểm tra ngày sinh là Claims-based
+
             dotnet new page -n Index -o Areas/Admin/Pages/Role -p:n App.Admin.Role
 
             dotnet new page -n Create -o Areas/Admin/Pages/Role -p:n App.Admin.Role
+            dotnet new page -n EditUserRoleClaim -o Areas/Admin/Pages/User -p:n App.Admin.User
 
             [Authorize] - Controller, Action, PageModel -> Dang nhap
 
