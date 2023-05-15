@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Security.Requirements;
 using App.Services;
 using ex.models;
 using Microsoft.AspNetCore.Builder;
@@ -13,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ex
 {
     public class Startup
@@ -114,7 +115,22 @@ namespace ex
                     // IdentityRoleClaim<string> claim1;
                     // IdentityUserClaim<string> claim2;
                 });
+                options.AddPolicy("InGenZ", policyBuilder =>
+                {
+                    policyBuilder.RequireAuthenticatedUser();
+                    policyBuilder.Requirements.Add(new GenZRequirement());
+                });
+                options.AddPolicy("ShowAdminMenu", pb =>
+                {
+                    pb.RequireRole("Admin");
+                });
+                options.AddPolicy("CanUpdateArticle", pb =>
+                {
+                    pb.Requirements.Add(new ArticleUpdateRequirement());
+                });
             });
+            // AuthorizationHandler phai la AddTransient (Tao ra doi tuong AuthorizationHandler cho moi truy van)
+            services.AddTransient<IAuthorizationHandler, AppAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
