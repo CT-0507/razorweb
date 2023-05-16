@@ -1,6 +1,6 @@
 ﻿using System;
 using Bogus;
-using ex.models;
+using ex.Models;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ex.Migrations

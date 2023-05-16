@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using ex.models;
+using ex.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ex.Pages_Blog
@@ -13,9 +13,9 @@ namespace ex.Pages_Blog
     [Authorize(Policy = "InGenZ")] // Nam sinh 1997-2012
     public class DetailsModel : PageModel
     {
-        private readonly ex.models.MyBlogContext _context;
+        private readonly ex.Models.AppDbContext _context;
 
-        public DetailsModel(ex.models.MyBlogContext context)
+        public DetailsModel(ex.Models.AppDbContext context)
         {
             _context = context;
         }

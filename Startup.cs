@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using App.Security.Requirements;
 using App.Services;
-using ex.models;
+using ex.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,14 +36,14 @@ namespace ex
             services.AddSingleton<IEmailSender, SendMailService>();
 
             services.AddRazorPages();
-            services.AddDbContext<MyBlogContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
             {
                 string connection = Configuration.GetConnectionString("MyBlogContext");
                 options.UseSqlServer(connection);
             });
 
             services.AddIdentity<AppUser, IdentityRole>()
-                    .AddEntityFrameworkStores<MyBlogContext>()
+                    .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();
             // services.AddDefaultIdentity<AppUser>()
             //         .AddEntityFrameworkStores<MyBlogContext>()

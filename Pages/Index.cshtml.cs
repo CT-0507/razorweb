@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ex.models;
+using ex.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -13,9 +13,9 @@ namespace ex.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        private readonly MyBlogContext myBlogContext;
+        private readonly AppDbContext myBlogContext;
 
-        public IndexModel(ILogger<IndexModel> logger, MyBlogContext _myContext)
+        public IndexModel(ILogger<IndexModel> logger, AppDbContext _myContext)
         {
             _logger = logger;
             myBlogContext = _myContext;

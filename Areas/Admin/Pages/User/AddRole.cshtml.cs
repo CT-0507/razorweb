@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using ex.models;
+using ex.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -18,12 +18,12 @@ namespace App.Admin.User
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        private readonly MyBlogContext _context;
+        private readonly AppDbContext _context;
 
         public AddRoleModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager,
-            MyBlogContext context)
+            AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
